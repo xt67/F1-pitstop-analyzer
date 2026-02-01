@@ -48,9 +48,9 @@ class SettingsManager:
         """
         if os.name == "nt":  # Windows
             app_data = os.environ.get("APPDATA", os.path.expanduser("~"))
-            settings_dir = Path(app_data) / "F1PitStopAnalyzer"
+            settings_dir = Path(app_data) / "F1PitLab"
         else:  # macOS/Linux
-            settings_dir = Path.home() / ".config" / "f1-pitstop-analyzer"
+            settings_dir = Path.home() / ".config" / "f1-pitlab"
 
         settings_dir.mkdir(parents=True, exist_ok=True)
         return settings_dir / "settings.json"

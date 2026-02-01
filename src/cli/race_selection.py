@@ -34,8 +34,8 @@ def cli_main():
     
     # Header
     console.print(Panel.fit(
-        "[bold red]🏎️ F1 PIT STOP ANALYZER[/bold red]\n"
-        "[dim]Analyze pit stops from any F1 race[/dim]",
+        "[bold red]🏎️ F1 PITLAB[/bold red]\n"
+        "[dim]ML-powered pit stop analysis & strategy intelligence[/dim]",
         border_style="red"
     ))
     

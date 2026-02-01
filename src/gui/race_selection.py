@@ -107,7 +107,7 @@ class RaceSelectionWindow(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("🏎️ F1 Pit Stop Analyzer")
+        self.setWindowTitle("🏎️ F1 PitLab")
         self.setMinimumSize(1200, 800)
         self._setup_ui()
         self._load_schedule()
@@ -167,7 +167,7 @@ class RaceSelectionWindow(QMainWindow):
         # Header
         header_layout = QHBoxLayout()
         
-        title_label = QLabel("🏎️ F1 Pit Stop Analyzer")
+        title_label = QLabel("🏎️ F1 PitLab")
         title_font = QFont()
         title_font.setPointSize(24)
         title_font.setBold(True)
@@ -249,7 +249,7 @@ class RaceSelectionWindow(QMainWindow):
         main_layout.addWidget(scroll_area)
 
         # Footer
-        footer_label = QLabel("Powered by FastF1 | Built with ❤️ for F1 fans")
+        footer_label = QLabel("F1 PitLab | Powered by FastF1 & Machine Learning")
         footer_label.setStyleSheet("color: #666; font-size: 11px;")
         footer_label.setAlignment(Qt.AlignCenter)
         main_layout.addWidget(footer_label)

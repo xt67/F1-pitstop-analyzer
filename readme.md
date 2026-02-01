@@ -1,6 +1,8 @@
-# 🏎️ F1 Pitstop Analyzer Pro
+# 🏎️ F1 PitLab
 
-An advanced Formula 1 pit stop analysis platform with **machine learning predictions**, **interactive visualizations**, and **database persistence**.
+**The Ultimate F1 Pit Stop Intelligence Platform**
+
+Advanced Formula 1 pit stop analysis with **ML predictions**, **tyre degradation modeling**, **interactive visualizations**, and **PostgreSQL database**.
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
 ![FastF1](https://img.shields.io/badge/FastF1-3.7+-red?logo=f1)
