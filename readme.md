@@ -1,118 +1,225 @@
-# 🏎️ F1 Pitstop Analyzer
+# 🏎️ F1 Pitstop Analyzer Pro
 
-A Python data analysis project that fetches and analyzes real Formula 1 pit stop data.
+An advanced Formula 1 pit stop analysis platform with **machine learning predictions**, **interactive visualizations**, and **database persistence**.
+
+![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
+![FastF1](https://img.shields.io/badge/FastF1-3.7+-red?logo=f1)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ## 📊 Features
 
-- Select and analyze any race from any season (2018–2025)
-- Fetches real F1 race data using the FastF1 API
-- Analyzes pit stop durations by driver and team
-- Detailed summary and statistics for each race
-- Unified, scrollable chart with all visualizations in one figure
-- User prompt to save charts to the `charts/` folder
-- Caching for fast repeated analysis
-- Pre-cache all races in a season for speed
+### Core Analysis
+- 🏁 Select and analyze any race from any season (2018–2025)
+- 📡 Real-time F1 data via FastF1 API
+- 📈 Comprehensive pit stop duration analysis by driver and team
+- 💾 Smart caching for fast repeated analysis
+- 🔄 Bulk pre-cache entire seasons
 
-## 🛠️ Technologies Used
+### Machine Learning
+- 🤖 **Pit Stop Duration Prediction** - Ensemble model (Random Forest + Gradient Boosting + Bayesian Ridge)
+- 📉 **Tyre Degradation Modeling** - Bayesian-inspired tyre wear predictions
+- 🎯 **Optimal Pit Window Suggestions** - ML-driven strategy recommendations
+- 🔍 **Anomaly Detection** - Identify unusual pit stops with Isolation Forest
+- 📊 **Model Performance Metrics** - MAE, R², feature importance visualization
 
-- **Python 3.x**
-- **FastF1** - F1 data API
-- **Pandas** - Data manipulation
-- **Matplotlib & Seaborn** - Data visualization
+### Interactive Visualizations (Plotly)
+- 🎨 F1-themed dark mode charts with official team colors
+- 📊 Pit stop duration comparison charts
+- ⏱️ Race timeline visualizations
+- 🕸️ Team performance radar charts
+- 📅 Tire strategy Gantt charts
+- 🔥 Pit window heatmaps
+- 🔮 ML prediction vs actual comparisons
+
+### Database Integration
+- 🐘 **PostgreSQL** support for production
+- 📁 **SQLite** for local development
+- 🗃️ Full data persistence (races, drivers, pit stops, predictions)
+- 📈 Historical analytics and trend analysis
+
+### User Interfaces
+- 🖥️ **GUI Mode** - Modern PySide6 desktop application
+- 💻 **CLI Mode** - Rich terminal interface with Questionary prompts
+
+## 🛠️ Tech Stack
+
+| Category | Technology |
+|----------|------------|
+| **Data** | FastF1, Pandas, NumPy |
+| **ML** | scikit-learn (RF, GBM, BayesianRidge), scipy |
+| **Visualization** | Plotly, Kaleido, Matplotlib, Seaborn |
+| **Database** | SQLAlchemy 2.0, PostgreSQL, SQLite, Alembic |
+| **GUI** | PySide6 (Qt6) |
+| **CLI** | Questionary, Rich |
+| **Config** | python-dotenv, Pydantic |
 
 ## 📈 Sample Output
 
 ```
 🏁 PIT STOP ANALYSIS: Monaco Grand Prix 2024
-...existing code...
+
 🏆 PIT STOP RECORDS:
    🥇 Fastest: VER (Red Bull Racing) - 23.67s on Lap 18
    🥈 2nd: HAM (Mercedes) - 24.09s on Lap 22
    🥉 3rd: NOR (McLaren) - 24.36s on Lap 25
 
-🐢 Slowest: STR (Aston Martin) - 28.12s on Lap 41
+🤖 ML PREDICTIONS:
+   Model: Ensemble (RF + GBM + BayesianRidge)
+   MAE: 0.42s | R²: 0.89
+   Predicted vs Actual: VER 23.52s vs 23.67s
 
-👨‍✈️ DRIVER PIT STOP SUMMARY:
-   Driver   Team                 Avg      Best   Stops Pit Laps
-   VER      Red Bull Racing     23.67s   23.67s     1 [18]
-   HAM      Mercedes            24.09s   24.09s     1 [22]
-   ...
-
-📊 After analysis, a unified chart with all visualizations will be shown. You will be prompted:
-💾 Do you want to save this chart to the charts/ folder? (y/n):
+📊 Interactive charts saved to charts/ folder
 ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.8 or higher
-- pip (Python package manager)
+- Python 3.10 or higher
+- PostgreSQL (optional, for production)
 
 ### Installation
 
-1. Clone the repository
+1. **Clone the repository**
    ```bash
    git clone https://github.com/xt67/F1-pitstop-analyzer.git
    cd F1-pitstop-analyzer
    ```
 
-2. Create a virtual environment
+2. **Create virtual environment**
    ```bash
    python -m venv venv
    ```
 
-3. Activate the virtual environment
+3. **Activate environment**
    - Windows: `venv\Scripts\activate`
    - Mac/Linux: `source venv/bin/activate`
 
-4. Install dependencies
+4. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-5. Create a cache folder
-   ```bash
-   mkdir cache
+5. **Configure database (optional)**
+   
+   Create a `.env` file for PostgreSQL:
+   ```env
+   DB_TYPE=postgresql
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_NAME=f1_analyzer
+   DB_USER=postgres
+   DB_PASSWORD=yourpassword
    ```
+   
+   Or use SQLite (default - no configuration needed).
 
-6. Run the analyzer
+6. **Run the analyzer**
    ```bash
    python main.py
    ```
 
 ## 🕹️ Usage
 
-1. **Select a season and race**: The program will prompt you to choose any available season and race.
-2. **View analysis and charts**: After analysis, a single scrollable chart with all visualizations will be displayed.
-3. **Save charts**: When prompted, enter `y` to save the chart to the `charts/` folder, or `n` to skip saving.
-4. **Pre-cache races**: Use the menu to pre-cache all races in a season for faster future analysis.
+### GUI Mode
+Launch the graphical interface:
+```bash
+python main.py
+```
+
+Features:
+- **Race Selection** - Browse seasons and races
+- **Analysis Dashboard** - View pit stop statistics
+- **ML Training** - Train models with progress tracking
+- **Chart Export** - Save interactive HTML/PNG charts
+
+### CLI Mode
+Use the terminal interface:
+```bash
+python main.py --cli
+```
+
+### Database Operations
+```python
+from src.database import DatabaseConnection, DatabaseRepository
+
+# Connect (auto-detects .env settings)
+db = DatabaseConnection()
+db.create_tables()
+
+# Use repository for data operations
+repo = DatabaseRepository(db)
+pit_stops_df = repo.get_pit_stops_dataframe(year=2024)
+```
 
 ## 📁 Project Structure
 
 ```
 f1-pitstop-analyzer/
-├── main.py           # Main analysis script
-├── requirements.txt  # Python dependencies
-├── cache/            # Cached F1 data (gitignored)
-├── charts/           # Saved chart images (auto-created)
-├── venv/             # Virtual environment (gitignored)
-├── .gitignore        # Git ignore file
-└── README.md         # This file
+├── main.py                    # Entry point
+├── requirements.txt           # Dependencies
+├── .env                       # Database config (create this)
+├── cache/                     # FastF1 data cache
+├── charts/                    # Exported visualizations
+├── src/
+│   ├── charts/
+│   │   ├── __init__.py
+│   │   └── visualizations.py  # Plotly chart generator
+│   ├── database/
+│   │   ├── __init__.py
+│   │   ├── models.py          # SQLAlchemy ORM models
+│   │   ├── connection.py      # Database connection manager
+│   │   └── repository.py      # Data access layer
+│   ├── ml/
+│   │   ├── __init__.py
+│   │   ├── predictor.py       # Basic ML predictor
+│   │   └── enhanced_predictor.py  # Advanced ensemble + tyre model
+│   ├── gui/
+│   │   ├── __init__.py
+│   │   ├── main_window.py     # PySide6 main window
+│   │   └── ml_training.py     # ML training dialog
+│   └── cli/
+│       └── interface.py       # Rich/Questionary CLI
+└── venv/                      # Virtual environment
 ```
 
-## 🔮 Future Improvements
+## 🤖 Machine Learning Details
 
-- [ ] Analyze multiple races/seasons at once
-- [ ] Build ML model to predict pit stop times
-- [ ] Add interactive dashboard
-- [ ] Compare pit strategies
+### Ensemble Predictor
+Combines three models for robust predictions:
+- **Random Forest** - Captures non-linear patterns
+- **Gradient Boosting** - Handles sequential dependencies
+- **Bayesian Ridge** - Provides uncertainty estimates
+
+### Tyre Degradation Model
+Bayesian-inspired model that tracks:
+- Compound-specific wear rates (SOFT > MEDIUM > HARD)
+- Fuel load effects
+- Track-specific degradation patterns
+
+### Feature Engineering
+- Driver/team historical performance
+- Track characteristics
+- Weather conditions
+- Tyre compound & age
+- Fuel-adjusted lap times
+
+## 🔮 Roadmap
+
+- [x] ~~Build ML model to predict pit stop times~~
+- [x] ~~Add interactive dashboard~~
+- [x] ~~Database persistence~~
+- [ ] Real-time race predictions
+- [ ] Strategy optimization engine
+- [ ] Web dashboard (FastAPI + React)
+- [ ] Multi-race comparative analysis
 
 ## 📝 License
 
-This project is open source and available under the MIT License.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ## 🙏 Acknowledgments
 
-- [FastF1](https://github.com/theOehrly/Fast-F1) for the amazing F1 data API
-- Formula 1 for the exciting sport!
+- [FastF1](https://github.com/theOehrly/Fast-F1) - F1 data API
+- [IAmTomShaw/f1-race-replay](https://github.com/IAmTomShaw/f1-race-replay) - Design inspiration
+- Formula 1® - For the exciting sport!
 
