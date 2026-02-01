@@ -1089,7 +1089,7 @@ def main():
         elif choice == 4:
             cache_season()
         elif choice == 5:
-            print("\n👋 Thanks for using F1 Pit Stop Analyzer! Goodbye!")
+            print("\n👋 Thanks for using F1 PitLab! Goodbye!")
             break
         
         print("\n" + "-"*40)
@@ -1097,4 +1097,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # Launch GUI by default
+    from src.gui.race_selection import run_gui
+    run_gui()
