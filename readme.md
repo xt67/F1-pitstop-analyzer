@@ -27,11 +27,6 @@ Advanced Formula 1 pit stop analysis with **ML predictions**, **tyre degradation
   <img src="docs/screenshots/tire_strategy.png" alt="Tire Strategy Chart" width="700"/>
 </p>
 
-### Pit Stop Analysis Charts
-<p align="center">
-  <img src="charts/pitstop_analysis_Qatar_Grand_Prix_2025.png" alt="Qatar GP Pit Stop Analysis" width="700"/>
-</p>
-
 ---
 
 ## 📊 Features
